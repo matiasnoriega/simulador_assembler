@@ -1,0 +1,22 @@
+    JMP iniciar
+naa: DB "K"
+DB 0
+
+iniciar: 
+    MOV C, naa
+    MOV D, 0xE8
+    CALL imprimir
+    HLT
+
+imprimir:
+    PUSH A
+    MOV B, 0
+    PUSH 5d
+    PUSH 4d
+    PUSH 1d
+loop:
+    POP A
+    MOV [D], A
+    CMP B, [SP]
+    JNZ loop
+    RET

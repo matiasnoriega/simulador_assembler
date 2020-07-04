@@ -1,22 +1,22 @@
     JMP iniciar
-naa: DB "K"
-DB 0
-
 iniciar: 
-    MOV C, naa
-    MOV D, 0xE8
-    CALL imprimir
+    CALL comparar
     HLT
 
-imprimir:
-    PUSH A
-    MOV B, 0
-    PUSH 5d
-    PUSH 4d
-    PUSH 1d
-loop:
-    POP A
-    MOV [D], A
-    CMP B, [SP]
-    JNZ loop
+comparar:
+    PUSH 111
+    PUSH 22
+    PUSH 255
+    MOV A, [SP+1]
+.loop:
+    POP C	
+    CMP C, A
+    JA reemplazar
+    CMP SP, 231
+    JNZ .loop
+    PUSH C
     RET
+reemplazar:
+    MOV A, C
+    JNZ .loop		
+    

@@ -9,14 +9,14 @@ comparar:
     PUSH 25
     MOV A, [SP+1]; Tomo el penultimo valor de la pila para comparar
 loop:
-    POP C; Hago un pop de la pila y guardo el valor de la cabecera en el registro C
+    POP C; Saco el primer valor la pila y lo guardo en el registro C
     CMP C, A; Comparo ambos registros, C y A
     JB reemplazar; En el caso de ser C mayor que A, hace un salto al segmento 'reemplazar'
-    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 231 en la memoria)
+    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 230 en la memoria)
     JNZ loop; En el caso de que lo anterior sea falso, vuelve a ejecutar el segmento 'loop'
     RET
 reemplazar:
-    MOV A, C; En el caso de que sea mayor, se guarda el coqntenido del registro de C en el registro A
-    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 231 en la memoria)
+    MOV A, C; En el caso de que sea mayor, se guarda el contenido del registro de C en el registro A
+    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 230 en la memoria)
     JNZ loop; En el caso de que lo anterior sea falso, vuelve a ejecutar el segmento 'loop'
     RET

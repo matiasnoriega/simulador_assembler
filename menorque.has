@@ -10,7 +10,7 @@ comparar:
     MOV A, [SP+1]
 .loop:
     POP C	
-    CMP C, A
+    CMP A, C
     JA reemplazar
     CMP SP, 231
     JNZ .loop
@@ -18,5 +18,6 @@ comparar:
     RET
 reemplazar:
     MOV A, C
+    CMP SP, 231
     JNZ .loop		
     

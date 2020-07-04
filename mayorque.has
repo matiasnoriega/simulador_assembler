@@ -1,0 +1,22 @@
+    JMP iniciar
+iniciar: 
+    CALL comparar
+    HLT
+
+comparar:
+    PUSH 111
+    PUSH 22
+    PUSH 255
+    MOV A, [SP+1]
+loop:
+    POP C	
+    CMP C, A
+    JA reemplazar
+    CMP SP, 231
+    JNZ loop
+    PUSH C
+    RET
+reemplazar:
+    MOV A, C
+    JNZ loop		
+    

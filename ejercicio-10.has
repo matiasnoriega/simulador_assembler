@@ -1,0 +1,23 @@
+;
+; Enunciado:
+;    Realizar un programa que dado un vector de 5 posiciones; multiplique la
+;    primera posición con la segunda, la sume con la tercera, divida ;con la
+;    cuarta y reste con la quinta.
+;
+
+PUSH 4; Agrego a la pila valores consecutivos
+PUSH 2
+PUSH 2
+PUSH 6
+PUSH 4
+
+POP B; Obtenemos el valor de la pila y lo asignamos al registro B
+POP A; Obtenemos el siguiente valor de la pila y lo asignamos al registro A
+MUL B; Multiplico el registro B con el registro A, el resultado se almacena en el registro A
+POP B; Obtenemos el valor de la pila y lo asignamos al registro B
+ADD A, B; sumamos la multiplicación de la primera y segunda posicion contenida en el registro A, con la tercera posición contenida en B. El resultado se almacena en A
+POP B; Obtenemos el valor de la pila y lo asignamos al registro B
+DIV B; Divide A por el contenido de B. El resultado se almacena en A
+POP B; Obtenemos el valor de la pila y lo asignamos al registro B
+SUB A, B; restamos el registro B al contenido del registro A
+HLT

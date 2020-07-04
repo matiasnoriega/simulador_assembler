@@ -1,0 +1,17 @@
+JMP iniciar
+iniciar: 
+    CALL sumatoria; LLamo a la función sumatoria
+    HLT
+
+sumatoria:
+    PUSH 4; Agrego a la pila valores consecutivos
+    PUSH 22
+    PUSH 12
+    PUSH 6
+    PUSH 21
+loop:
+    POP B; Saco el primer valor la pila y lo guardo en el registro B
+    ADD A, B; Sumo el registro B al registro A
+    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 230 en la memoria)
+    JNZ loop; En el caso de que lo anterior sea falso, vuelve a ejecutar el segmento 'loop'
+    RET

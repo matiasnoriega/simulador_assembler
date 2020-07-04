@@ -1,23 +1,22 @@
     JMP iniciar
 iniciar: 
-    CALL comparar
+    CALL comparar; LLamo a la función comparar
     HLT
 
 comparar:
-    PUSH 111
-    PUSH 22
-    PUSH 255
-    MOV A, [SP+1]
-.loop:
-    POP C	
-    CMP A, C
-    JA reemplazar
-    CMP SP, 231
-    JNZ .loop
-    PUSH C
+    PUSH 255; Agrego a la pila tres valores consecutivos (en lugar)
+    PUSH 1
+    PUSH 25
+    MOV A, [SP+1]; Tomo el penultimo valor de la pila para comparar
+loop:
+    POP C; Hago un pop de la pila y guardo el valor de la cabecera en el registro C
+    CMP C, A; Comparo ambos registros, C y A
+    JB reemplazar; En el caso de ser C mayor que A, hace un salto al segmento 'reemplazar'
+    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 231 en la memoria)
+    JNZ loop; En el caso de que lo anterior sea falso, vuelve a ejecutar el segmento 'loop'
     RET
 reemplazar:
-    MOV A, C
-    CMP SP, 231
-    JNZ .loop		
-    
+    MOV A, C; En el caso de que sea mayor, se guarda el coqntenido del registro de C en el registro A
+    CMP SP, 230; Chequea que el stack pointer se encuentre en la posición 0 del stack (o posición 231 en la memoria)
+    JNZ loop; En el caso de que lo anterior sea falso, vuelve a ejecutar el segmento 'loop'
+    RET
